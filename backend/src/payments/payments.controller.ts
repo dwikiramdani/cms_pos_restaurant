@@ -27,7 +27,7 @@ export class PaymentsController {
   @Post()
   @Roles(UserRole.OWNER, UserRole.MANAGER, UserRole.CASHIER)
   @ApiOperation({ summary: 'Create payment' })
-  create(@Body() createDto: CreatePaymentDto, @Request() req) {
+  create(@Body() createDto: CreatePaymentDto, @Request() req: any) {
     return this.paymentsService.create(createDto, req.user.sub);
   }
 

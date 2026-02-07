@@ -67,10 +67,12 @@ export class KitchenService {
 
     this.websocketGateway.emitOrderUpdated(order);
 
-    return this.ordersRepository.findOne({
+    const updatedOrder = await this.ordersRepository.findOne({
       where: { id: orderId },
       relations: ['items', 'items.menuItem'],
     });
+
+    return updatedOrder as Order;
   }
 
   async markItemReady(itemId: string): Promise<OrderItem> {
@@ -171,9 +173,11 @@ export class KitchenService {
     await this.ordersRepository.save(order);
     this.websocketGateway.emitOrderUpdated(order);
 
-    return this.ordersRepository.findOne({
+    const updatedOrder = await this.ordersRepository.findOne({
       where: { id: orderId },
       relations: ['items', 'items.menuItem'],
     });
+
+    return updatedOrder as Order;
   }
 }

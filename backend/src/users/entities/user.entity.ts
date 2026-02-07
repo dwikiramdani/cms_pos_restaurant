@@ -8,13 +8,9 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Branch } from './branch.entity';
-import { Order } from './order.entity';
-import { Payment } from './payment.entity';
-import { Promotion } from './promotion.entity';
-import { MenuItem } from './menu-item.entity';
-import { SystemSetting } from './system-setting.entity';
-import { OrderItem } from './order-item.entity';
+import { Branch } from '../branches/entities/branch.entity';
+import { Order } from '../orders/entities/order.entity';
+import { Payment } from '../payments/entities/payment.entity';
 
 export enum UserRole {
   OWNER = 'owner',
@@ -47,7 +43,7 @@ export class User {
   @Column({ nullable: true })
   branchId: string;
 
-  @ManyToOne(() => Branch, (branch) => branch.users, { nullable: true })
+  @ManyToOne(() => Branch, (branch: any) => branch.users, { nullable: true })
   @JoinColumn({ name: 'branchId' })
   branch: Branch;
 
@@ -63,9 +59,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Order, (order) => order.createdBy)
+  @OneToMany(() => Order, (order: any) => order.createdBy)
   orders: Order[];
 
-  @OneToMany(() => Payment, (payment) => payment.processedBy)
+  @OneToMany(() => Payment, (payment: any) => payment.processedBy)
   payments: Payment[];
 }

@@ -6,10 +6,10 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { User } from '../user.entity';
-import { MenuItem } from './menu-item.entity';
-import { SystemSetting } from './system-setting.entity';
-import { Promotion } from './promotion.entity';
+import { User } from '../users/entities/user.entity';
+import { MenuItem } from '../menu/entities/menu-item.entity';
+import { SystemSetting } from '../settings/entities/system-setting.entity';
+import { Promotion } from '../promotions/entities/promotion.entity';
 
 @Entity('branches')
 export class Branch {
@@ -57,15 +57,15 @@ export class Branch {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => User, (user) => user.branch)
+  @OneToMany(() => User, (user: any) => user.branch)
   users: User[];
 
-  @OneToMany(() => MenuItem, (menuItem) => menuItem.branch)
+  @OneToMany(() => MenuItem, (menuItem: any) => menuItem.branch)
   menuItems: MenuItem[];
 
-  @OneToMany(() => SystemSetting, (setting) => setting.branch)
+  @OneToMany(() => SystemSetting, (setting: any) => setting.branch)
   settings: SystemSetting[];
 
-  @OneToMany(() => Promotion, (promotion) => promotion.branch)
+  @OneToMany(() => Promotion, (promotion: any) => promotion.branch)
   promotions: Promotion[];
 }

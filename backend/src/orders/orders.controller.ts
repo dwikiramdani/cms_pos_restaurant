@@ -29,7 +29,7 @@ export class OrdersController {
   @Post()
   @Roles(UserRole.OWNER, UserRole.MANAGER, UserRole.CASHIER)
   @ApiOperation({ summary: 'Create new order' })
-  create(@Body() createDto: CreateOrderDto, @Request() req) {
+  create(@Body() createDto: CreateOrderDto, @Request() req: any) {
     return this.ordersService.create(createDto, req.user.sub);
   }
 

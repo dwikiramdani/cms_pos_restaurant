@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { Order } from './order.entity';
@@ -40,7 +41,7 @@ export class OrderItem {
   @Column({ type: 'enum', enum: ['pending', 'preparing', 'ready', 'served'], default: 'pending' })
   kitchenStatus: string;
 
-  @ManyToOne(() => Order, (order) => order.items)
+  @ManyToOne(() => Order, (order: any) => order.items)
   @JoinColumn({ name: 'orderId' })
   order: Order;
 
@@ -52,7 +53,7 @@ export class OrderItem {
   @JoinColumn({ name: 'variantId' })
   variant: MenuVariant;
 
-  @OneToMany(() => OrderItemAddon, (addon) => addon.orderItem, { cascade: true })
+  @OneToMany(() => OrderItemAddon, (addon: any) => addon.orderItem, { cascade: true })
   addons: OrderItemAddon[];
 
   @CreateDateColumn()

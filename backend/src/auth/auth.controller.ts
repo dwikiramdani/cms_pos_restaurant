@@ -27,7 +27,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Get current user profile' })
-  async getProfile(@Request() req) {
+  async getProfile(@Request() req: any) {
     return this.authService.getProfile(req.user.sub);
   }
 
@@ -35,7 +35,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Change password' })
-  async changePassword(@Request() req, @Body() changePasswordDto: ChangePasswordDto) {
+  async changePassword(@Request() req: any, @Body() changePasswordDto: ChangePasswordDto) {
     return this.authService.changePassword(
       req.user.sub,
       changePasswordDto.currentPassword,
@@ -43,3 +43,4 @@ export class AuthController {
     );
   }
 }
+

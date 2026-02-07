@@ -178,7 +178,7 @@ export class OrdersService {
 
     if (updateDto.status === OrderStatus.CANCELLED) {
       order.cancelledAt = new Date();
-      order.cancelledReason = updateDto.reason;
+      order.cancelledReason = updateDto.reason || '';
     }
 
     await this.ordersRepository.save(order);

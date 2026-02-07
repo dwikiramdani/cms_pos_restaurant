@@ -12,8 +12,15 @@ export class SettingsService {
   ) {}
 
   async get(key: string, branchId?: string): Promise<any> {
+    const whereCondition: any = { key };
+    if (branchId) {
+      whereCondition.branchId = branchId;
+    } else {
+      whereCondition.branchId = null as any;
+    }
+    
     const setting = await this.settingsRepository.findOne({
-      where: { key, branchId: branchId || null },
+      where: whereCondition,
     });
 
     if (!setting) {
@@ -26,8 +33,15 @@ export class SettingsService {
   async set(key: string, value: any, type: string = 'string', branchId?: string, description?: string): Promise<SystemSetting> {
     const stringValue = this.stringifyValue(value, type);
     
+    const whereCondition: any = { key };
+    if (branchId) {
+      whereCondition.branchId = branchId;
+    } else {
+      whereCondition.branchId = null as any;
+    }
+
     const existing = await this.settingsRepository.findOne({
-      where: { key, branchId: branchId || null },
+      where: whereCondition,
     });
 
     if (existing) {
@@ -39,7 +53,7 @@ export class SettingsService {
       key,
       value: stringValue,
       type,
-      branchId,
+      branchId: branchId || null,
       description,
     });
 
@@ -66,7 +80,7 @@ export class SettingsService {
     ];
 
     for (const defaultSetting of defaults) {
-      await this.set(defaultSetting.key, defaultSetting.value, defaultSetting.type, null, defaultSetting.description);
+      await this.set(defaultSetting.key, defaultSetting.value, defaultSetting.type, undefined, defaultSetting.description);
     }
   }
 

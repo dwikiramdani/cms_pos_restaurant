@@ -67,8 +67,8 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
 
-    if (updateUserDto.password) {
-      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+    if ((updateUserDto as any).password) {
+      (updateUserDto as any).password = await bcrypt.hash((updateUserDto as any).password, 10);
     }
 
     Object.assign(user, updateUserDto);
