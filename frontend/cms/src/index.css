@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-japanese-white text-japanese-charcoal antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-japanese-red hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-japanese-brown hover:bg-brown-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2;
+  }
+
+  .btn-outline {
+    @apply border-2 border-japanese-red text-japanese-red hover:bg-japanese-red hover:text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 border border-japanese-gray/50;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 border border-japanese-gray rounded-lg focus:ring-2 focus:ring-japanese-red focus:border-transparent outline-none transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-japanese-charcoal mb-1;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 text-japanese-charcoal hover:bg-japanese-white hover:text-japanese-red rounded-lg transition-colors duration-200;
+  }
+
+  .sidebar-link.active {
+    @apply bg-japanese-white text-japanese-red font-medium;
+  }
+
+  .status-badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-new {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .status-cooking {
+    @apply bg-orange-100 text-orange-800;
+  }
+
+  .status-ready {
+    @apply bg-japanese-matcha/20 text-japanese-matcha;
+  }
+
+  .status-completed {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .status-cancelled {
+    @apply bg-red-100 text-red-800;
+  }
+}
