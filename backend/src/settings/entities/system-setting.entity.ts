@@ -27,9 +27,9 @@ export class SystemSetting {
   type: string;
 
   @Column({ nullable: true })
-  branchId: string;
+  branchId: string | null;
 
-  @ManyToOne(() => Branch, (branch) => branch.settings, { nullable: true })
+  @ManyToOne(() => Branch, (branch: any) => branch.settings, { nullable: true })
   @JoinColumn({ name: 'branchId' })
   branch: Branch;
 

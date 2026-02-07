@@ -16,7 +16,7 @@ export class SettingsService {
     if (branchId) {
       whereCondition.branchId = branchId;
     } else {
-      whereCondition.branchId = null as any;
+      whereCondition.branchId = null;
     }
     
     const setting = await this.settingsRepository.findOne({
@@ -37,7 +37,7 @@ export class SettingsService {
     if (branchId) {
       whereCondition.branchId = branchId;
     } else {
-      whereCondition.branchId = null as any;
+      whereCondition.branchId = null;
     }
 
     const existing = await this.settingsRepository.findOne({
@@ -49,13 +49,12 @@ export class SettingsService {
       return this.settingsRepository.save(existing);
     }
 
-    const setting = this.settingsRepository.create({
-      key,
-      value: stringValue,
-      type,
-      branchId: branchId || null,
-      description,
-    });
+    const setting = new SystemSetting();
+    setting.key = key;
+    setting.value = stringValue;
+    setting.type = type;
+    setting.branchId = branchId || null;
+    setting.description = description || null;
 
     return this.settingsRepository.save(setting);
   }
