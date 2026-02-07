@@ -7,7 +7,7 @@ import { OrderItemAddon } from './entities/order-item-addon.entity';
 import { MenuService } from '../menu/menu.service';
 import { WebsocketGateway } from '../websocket/websocket.gateway';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderStatusDto } from './dto\update-order-status.dto';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
