@@ -8,9 +8,9 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Branch } from '../branches/entities/branch.entity';
-import { Order } from '../orders/entities/order.entity';
-import { Payment } from '../payments/entities/payment.entity';
+import { Branch } from '../../branches/entities/branch.entity';
+import { Order } from '../../orders/entities/order.entity';
+import { Payment } from '../../payments/entities/payment.entity';
 
 export enum UserRole {
   OWNER = 'owner',
@@ -45,7 +45,7 @@ export class User {
 
   @ManyToOne(() => Branch, (branch: any) => branch.users, { nullable: true })
   @JoinColumn({ name: 'branchId' })
-  branch: Branch;
+  branch: Branch | null;
 
   @Column({ default: true })
   isActive: boolean;
