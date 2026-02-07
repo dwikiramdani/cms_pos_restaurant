@@ -53,8 +53,8 @@ export class SettingsService {
     setting.key = key;
     setting.value = stringValue;
     setting.type = type;
-    setting.branchId = branchId || null;
-    setting.description = description || null;
+    setting.branchId = branchId || (null as string | null);
+    setting.description = (description || null) as string | null;
 
     return this.settingsRepository.save(setting);
   }

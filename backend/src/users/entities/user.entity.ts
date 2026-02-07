@@ -41,7 +41,7 @@ export class User {
   role: UserRole;
 
   @Column({ nullable: true })
-  branchId: string;
+  branchId: string | null;
 
   @ManyToOne(() => Branch, (branch: any) => branch.users, { nullable: true })
   @JoinColumn({ name: 'branchId' })
@@ -51,7 +51,7 @@ export class User {
   isActive: boolean;
 
   @Column({ nullable: true })
-  lastLoginAt: Date;
+  lastLoginAt: Date | null;
 
   @CreateDateColumn()
   createdAt: Date;

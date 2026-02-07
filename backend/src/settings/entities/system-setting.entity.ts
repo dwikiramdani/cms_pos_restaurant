@@ -21,7 +21,7 @@ export class SystemSetting {
   value: string;
 
   @Column({ nullable: true })
-  description: string;
+  description: string | null;
 
   @Column({ type: 'enum', enum: ['string', 'number', 'boolean', 'json'], default: 'string' })
   type: string;
